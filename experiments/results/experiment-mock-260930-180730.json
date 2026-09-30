@@ -1,0 +1,199 @@
+{
+  "generated_at": "2026-09-30T18:07:28.555617+00:00",
+  "backend": "mock",
+  "backend_kwargs": {
+    "critique_accuracy": 0.5
+  },
+  "max_attempts": 5,
+  "seeds": [
+    42
+  ],
+  "tasks": [
+    "fib",
+    "chunk_list"
+  ],
+  "runs": [
+    {
+      "seed": 42,
+      "strategy": "direct",
+      "outcomes": [
+        {
+          "task_id": "fib",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 0.5,
+        "first_attempt_rate": 0.5,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 2,
+        "first_half_first_attempt_rate": 0.0,
+        "second_half_first_attempt_rate": 1.0
+      }
+    },
+    {
+      "seed": 42,
+      "strategy": "best_of_n",
+      "outcomes": [
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.5,
+        "avg_attempts": 1.5,
+        "total_llm_calls": 3,
+        "first_half_first_attempt_rate": 0.0,
+        "second_half_first_attempt_rate": 1.0
+      }
+    },
+    {
+      "seed": 42,
+      "strategy": "self_refine",
+      "outcomes": [
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 3
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.5,
+        "avg_attempts": 1.5,
+        "total_llm_calls": 4,
+        "first_half_first_attempt_rate": 0.0,
+        "second_half_first_attempt_rate": 1.0
+      }
+    },
+    {
+      "seed": 42,
+      "strategy": "reflexion",
+      "outcomes": [
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 3
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.5,
+        "avg_attempts": 1.5,
+        "total_llm_calls": 4,
+        "first_half_first_attempt_rate": 0.0,
+        "second_half_first_attempt_rate": 1.0
+      }
+    },
+    {
+      "seed": 42,
+      "strategy": "reflexion_insights",
+      "outcomes": [
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 4
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.5,
+        "avg_attempts": 1.5,
+        "total_llm_calls": 6,
+        "first_half_first_attempt_rate": 0.0,
+        "second_half_first_attempt_rate": 1.0
+      }
+    }
+  ],
+  "aggregate": {
+    "direct": {
+      "success_rate": 0.5,
+      "first_attempt_rate": 0.5,
+      "avg_attempts": 1.0,
+      "total_llm_calls": 2.0,
+      "first_half_first_attempt_rate": 0.0,
+      "second_half_first_attempt_rate": 1.0
+    },
+    "best_of_n": {
+      "success_rate": 1.0,
+      "first_attempt_rate": 0.5,
+      "avg_attempts": 1.5,
+      "total_llm_calls": 3.0,
+      "first_half_first_attempt_rate": 0.0,
+      "second_half_first_attempt_rate": 1.0
+    },
+    "self_refine": {
+      "success_rate": 1.0,
+      "first_attempt_rate": 0.5,
+      "avg_attempts": 1.5,
+      "total_llm_calls": 4.0,
+      "first_half_first_attempt_rate": 0.0,
+      "second_half_first_attempt_rate": 1.0
+    },
+    "reflexion": {
+      "success_rate": 1.0,
+      "first_attempt_rate": 0.5,
+      "avg_attempts": 1.5,
+      "total_llm_calls": 4.0,
+      "first_half_first_attempt_rate": 0.0,
+      "second_half_first_attempt_rate": 1.0
+    },
+    "reflexion_insights": {
+      "success_rate": 1.0,
+      "first_attempt_rate": 0.5,
+      "avg_attempts": 1.5,
+      "total_llm_calls": 6.0,
+      "first_half_first_attempt_rate": 0.0,
+      "second_half_first_attempt_rate": 1.0
+    }
+  }
+}

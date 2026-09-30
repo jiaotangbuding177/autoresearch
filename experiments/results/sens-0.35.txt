@@ -1,0 +1,11 @@
+
+=== Aggregate (mean over seeds) ===
+strategy              success  first-try  attempts   calls  1st-half  2nd-half
+------------------------------------------------------------------------------
+direct                   0.25       0.25      1.00     8.0      0.28      0.23
+best_of_n                0.84       0.25      2.86    22.9      0.28      0.23
+self_refine              0.93       0.25      2.59    33.4      0.28      0.23
+reflexion                1.00       0.25      2.33    29.2      0.28      0.23
+reflexion_insights       1.00       0.45      1.89    30.2      0.38      0.53
+
+saved: D:\autoresearch\experiments\results\experiment-mock-260930-180210.json

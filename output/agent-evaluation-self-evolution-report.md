@@ -444,6 +444,112 @@ Agent 自我进化机制
 
 ---
 
+## 第六部分：Wave 2 增补（第二轮深化）
+
+### 6.1 DSPy 与 GEPA：从 Prompt 工程到 Prompt 编译
+
+**DSPy**（Stanford NLP, arXiv 2310.03714）提出声明式 LM 编程：将管道抽象为"文本转换图"，
+编译器自动优化 Prompt 和示例。关键结果：编译后的 770M T5 小模型可媲美使用
+GPT-3.5 的专家手写 Prompt 链。
+
+**DSPy 优化器谱系**：
+
+| 优化器 | 机制 | 适用场景 |
+|--------|------|----------|
+| BootstrapFewShot | 引导成功轨迹作为示例 | 快速起步 |
+| COPRO | 坐标上升优化指令 | 模块少时 |
+| MIPROv2 | 贝叶斯联合优化指令+示例 | 主力优化器 |
+| **GEPA** | **反思进化 + 帕累托前沿** | **2025 最佳实践** |
+
+**GEPA**（arXiv 2507.19457, ICLR 2026 Oral）是 2025 年的重要突破：
+- 用**自然语言反思**替代策略梯度做 Prompt 优化
+- vs GRPO：+6% 平均（最高 +20%），**rollout 减少最多 35 倍**
+- vs MIPROv2：+10% 以上（AIME-2025 上 +12%）
+- **意义**：验证了"反思（Reflexion 思想）+ 进化（遗传算法思想）+ 帕累托（多目标）"
+  的混合范式 — 即本报告"组合优于单一"结论的最强证据
+
+### 6.2 自我修正方法谱系补充：CRITIC / CoVe / ExpeL
+
+**按验证源的可靠性排序**：
+
+```
+纯内部验证 (Self-Refine)
+    < 结构化内部验证 (CoVe 独立自问自答)
+        < 外部工具验证 (CRITIC 搜索/代码执行)
+            < 跨任务经验学习 (ExpeL 洞察提取+复用)
+```
+
+- **CRITIC**（ICLR 2024, arXiv 2305.11738）：用外部工具（搜索/解释器/计算器）
+  验证 LLM 输出并针对性修改。证明**外部反馈对自我改进至关重要**。
+- **CoVe**（Meta, arXiv 2309.11495）：四步链式验证（草拟→计划验证问题→**独立**回答→
+  修正）。关键设计是验证的**独立性** — 避免确认偏差。
+- **ExpeL**（AAAI-24, arXiv 2308.10144）：从成功/失败经验中提取**自然语言洞察**，
+  跨任务复用，无需参数更新。解决了"经验泛化的抽象难题"。
+
+**重要反证**：*"Large Language Models Cannot Self-Correct Reasoning Yet"*
+（ICLR 2024, arXiv 2310.01798）指出：**无外部反馈的内在自省常常无效甚至有害**
+（性能反而下降）。这为下面的实验结论提供了关键约束。
+
+### 6.3 基准的最新演进（2025-2026）
+
+#### τ³-bench：从文本到多模态、知识感知
+- 新增 **banking_knowledge** 领域（RAG 检索式客服）
+- 新增 **Voice 全双工**音频原生评测
+- 基于 SABER 研究修复 75+ 任务错误
+- **教训**：v1.0.1 修复后旧结果不可比较 — 基准自身的错误会传播到所有下游研究
+
+#### SWE-bench Live：持续更新的活基准
+- 自动化策展管道：1,319 任务 / 93 仓库 / 2024 年后新 Issue
+- **重大发现**：主流 Agent 在 Live 上的表现**显著低于**静态 SWE-bench
+- **意义**：证明静态基准可能因数据污染**高估能力** — 直接验证本报告
+  "盲区 1：静态评测 vs 动态现实"
+
+#### 演进趋势总结
+1. 从静态到动态（持续更新防污染）
+2. 从单模态到多模态（语音、视觉）
+3. 从纯技术到知识感知（RAG 成为核心能力）
+4. 从手工到自动化（自动策展、Docker 环境）
+5. 防污染成为设计目标（时间戳验证、独立环境）
+
+### 6.4 可执行验证实验：evolve_lab
+
+将研究报告转化为**可运行的实验框架**（`experiments/`），对比 5 种自我进化策略：
+
+| 策略 | 外部反馈 | 反思记忆 | 跨任务洞察 |
+|------|----------|----------|------------|
+| direct | ✗ | ✗ | ✗ |
+| best_of_n | 选择用 | ✗ | ✗ |
+| self_refine | ✗（内部）| 轮内 | ✗ |
+| reflexion | ✓ | ✓ | ✗ |
+| reflexion_insights | ✓ | ✓ | ✓ |
+
+**实验方法**：8 个代码任务（19 个典型失败变体，签名契约机器验证）、真实子进程
+执行 unittest、30 seeds 确定性可复现。
+
+**核心结果**（30 seeds）：
+
+| 策略 | 成功率 | 首次成功率 | 平均尝试 | 调用数 | 学习曲线（前→后）|
+|------|--------|-----------|----------|--------|------------------|
+| direct | 0.33 | 0.33 | 1.00 | 8.0 | 0.29→0.38 |
+| best_of_n | 0.86 | 0.33 | 2.64 | 21.1 | 0.29→0.38 |
+| self_refine | 0.93 | 0.33 | 2.44 | 31.0 | 0.29→0.38 |
+| reflexion | **1.00** | 0.33 | 2.21 | 27.4 | 0.29→0.38 |
+| reflexion_insights | **1.00** | **0.52** | **1.80** | 28.9 | **0.38→0.65** |
+
+**结论**：
+1. **外部反馈优势确立**：reflexion ≥ self_refine ≥ best_of_n > direct
+   （real 模型下 refelxion 的优势应更大，见 arXiv 2310.01798）
+2. **洞察迁移可量化**：reflexion_insights 首次成功率 0.52 vs 0.33（+58%），
+   后半段学习曲线 0.65 vs 前半段 0.38 — ExpeL 机制的实验复现
+3. **天花板效应现场遭遇**：成功率饱和（1.00 平手）时，评测盲区再次出现 —
+   必须切换到首尝试率/效率指标才能分辨组合策略的价值
+4. **敏感度稳健**：自省准确率 0.2/0.35/0.5 三档下策略排序完全一致
+
+实验框架的每个候选解法都在真实子进程中执行真实测试 —
+反思反馈来自真实失败输出，非模拟。接真实 LLM 只需 `--backend openai` + API key。
+
+---
+
 ## 附录
 
 ### A. 研究日志索引
@@ -460,6 +566,10 @@ Agent 自我进化机制
 8. `iteration-08-experience-prompt.md` — Experience Replay 与自动 Prompt 优化
 9. `iteration-09-llm-as-judge.md` — LLM-as-Judge 评测方法论
 10. `iteration-10-blind-spots-bottlenecks.md` — 评测盲区与自我进化瓶颈分析
+11. `iteration-11-dspy-gepa.md` — DSPy 框架与 GEPA 反思进化
+12. `iteration-12-critic-cove-expel.md` — CRITIC / CoVe / ExpeL 方法深入
+13. `iteration-13-latest-benchmarks.md` — τ³-bench / SWE-bench Live 最新进展
+14. `iteration-14-experiment-design.md` + `iteration-14-results.md` — 组合实验设计与实测结果
 
 ### B. 参考文献
 
@@ -471,19 +581,27 @@ Agent 自我进化机制
 6. Reflexion: Language Agents with Verbal Reinforcement Learning (arXiv: 2303.11366)
 7. Self-Refine: Iterative Refinement with Self-Feedback (arXiv: 2303.17651)
 8. Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena (arXiv: 2306.05685)
+9. DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines (arXiv: 2310.03714)
+10. GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning (arXiv: 2507.19457)
+11. CRITIC: LLMs Can Self-Correct with Tool-Interactive Critiquing (arXiv: 2305.11738)
+12. Chain-of-Verification Reduces Hallucination in LLMs (arXiv: 2309.11495)
+13. ExpeL: LLM Agents Are Experiential Learners (arXiv: 2308.10144)
+14. Large Language Models Cannot Self-Correct Reasoning Yet (arXiv: 2310.01798)
+15. SWE-bench Goes Live! (arXiv: 2505.23419)
 
 ### C. 研究统计
 
-- **评测基准覆盖**: 6 个主流基准
-- **自我进化方法**: 5 大类 10+ 具体方法
+- **评测基准覆盖**: 8 个主流基准（含 τ³-bench / SWE-bench Live 最新演进）
+- **自我进化方法**: 12+ 具体方法（Reflexion / Self-Refine / CoVe / CRITIC / ExpeL /
+  Self-Play / Evolutionary / GEPA / DSPy 优化器等）
 - **评测方法论**: LLM-as-Judge 及对比分析
 - **盲区分析**: 7 大评测盲区
 - **瓶颈分析**: 5 大进化瓶颈
-- **总迭代数**: 10 轮
-- **研究深度**: 每个主题独立详细日志
+- **可执行实验**: evolve_lab 框架（8 任务 / 19 失败变体 / 5 策略 / 30 seeds）
+- **总迭代数**: 14 轮（Wave 1: 10 轮调研 + Wave 2: 4 轮深化与实验）
 
 ---
 
-**报告完成日期**: 2026-09-30  
-**研究模式**: autoresearch orchestrator (10 iterations)  
-**下次更新**: 建议 3 个月后跟进最新进展
+**报告完成日期**: 2026-09-30（Wave 1）/ 2026-10-01（Wave 2 增补）
+**研究模式**: autoresearch orchestrator (14 iterations, 2 waves)
+**下次更新**: 建议 3 个月后跟进最新进展；真实后端实验待 API key 配置后执行

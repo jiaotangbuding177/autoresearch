@@ -2,33 +2,62 @@
   "goal": "LLM Agent 评测基准与自我进化机制的系统性调研",
   "archetype": "document",
   "mode": "single-pass",
-  "iterations_completed": 10,
-  "iterations_total": 10,
+  "waves": 2,
+  "iterations_completed": 14,
   "status": "converged",
-  "artifacts": [
-    "output/agent-evaluation-self-evolution-report.md",
-    "autoresearch/logs/iteration-01-tau-bench.md",
-    "autoresearch/logs/iteration-02-swe-bench.md",
-    "autoresearch/logs/iteration-03-webarena.md",
-    "autoresearch/logs/iteration-04-gaia.md",
-    "autoresearch/logs/iteration-05-agentbench.md",
-    "autoresearch/logs/iteration-06-reflexion.md",
-    "autoresearch/logs/iteration-07-self-play-evolutionary.md",
-    "autoresearch/logs/iteration-08-experience-prompt.md",
-    "autoresearch/logs/iteration-09-llm-as-judge.md",
-    "autoresearch/logs/iteration-10-blind-spots-bottlenecks.md"
-  ],
+  "artifacts": {
+    "main_report": "output/agent-evaluation-self-evolution-report.md",
+    "logs": [
+      "autoresearch/logs/iteration-01-tau-bench.md",
+      "autoresearch/logs/iteration-02-swe-bench.md",
+      "autoresearch/logs/iteration-03-webarena.md",
+      "autoresearch/logs/iteration-04-gaia.md",
+      "autoresearch/logs/iteration-05-agentbench.md",
+      "autoresearch/logs/iteration-06-reflexion.md",
+      "autoresearch/logs/iteration-07-self-play-evolutionary.md",
+      "autoresearch/logs/iteration-08-experience-prompt.md",
+      "autoresearch/logs/iteration-09-llm-as-judge.md",
+      "autoresearch/logs/iteration-10-blind-spots-bottlenecks.md",
+      "autoresearch/logs/iteration-11-dspy-gepa.md",
+      "autoresearch/logs/iteration-12-critic-cove-expel.md",
+      "autoresearch/logs/iteration-13-latest-benchmarks.md",
+      "autoresearch/logs/iteration-14-experiment-design.md",
+      "autoresearch/logs/iteration-14-results.md"
+    ],
+    "experiment_framework": {
+      "root": "experiments/",
+      "entry": "experiments/run_experiment.py",
+      "verifier": "experiments/scripts/verify_tasks.py",
+      "headline_results": "experiments/results/experiment-mock-260930-180645.json",
+      "sensitivity": [
+        "experiments/results/sens-0.2.txt",
+        "experiments/results/sens-0.35.txt",
+        "experiments/results/sens-0.5.txt"
+      ]
+    }
+  },
   "summary": {
-    "benchmarks_covered": 6,
-    "self_evolution_methods": 5,
+    "benchmarks_covered": 8,
+    "self_evolution_methods": 12,
     "blind_spots_identified": 7,
     "bottlenecks_identified": 5,
-    "future_directions": 5
+    "experiment_strategies_compared": 5,
+    "experiment_seeds": 30,
+    "tasks_verified": "8 tasks / 19 buggy variants, signature contract all green"
   },
+  "key_experiment_findings": [
+    "外部反馈确立优势: reflexion(1.00) >= self_refine(0.93) >= best_of_n(0.86) > direct(0.33)",
+    "跨任务洞察迁移可量化: first-try 0.52 vs 0.33; 学习曲线 0.38 -> 0.65",
+    "天花板效应: 成功率饱和时需切换到首尝试率/效率指标",
+    "敏感度稳健: critique_accuracy 0.2/0.35/0.5 三档下策略排序一致"
+  ],
+  "pending": [
+    "真实后端实验（需 OPENAI_API_KEY）",
+    "git push 到远程（需 GitHub 认证: gh auth login）"
+  ],
   "next_suggested_steps": [
-    "3个月后跟进最新基准和模型进展",
-    "深入调研 DSPy 框架的 Prompt 优化能力",
-    "构建自定义评测基准验证研究发现",
-    "实验组合多种自我进化方法"
+    "配置 API key 后运行 --backend openai 对比 mock 与真实模型差异",
+    "基于 evolve_lab 添加更多任务（多文件、长上下文）以接近 τ-bench 的交付型评测",
+    "验证 GEPA 式反思-进化组合策略（在 evolve_lab 中实现后对比）"
   ]
 }
