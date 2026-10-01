@@ -283,6 +283,94 @@ class ReflexionPlusInsights(Reflexion):
         return TaskOutcome(task.id, False, first_passed, self.max_attempts, calls)
 
 
+class AdaptiveReflexion(Strategy):
+    """SOTA strategy: Adaptive Reflexion that switches to deep analysis 
+    after initial failures. Combines efficiency of Reflexion with 
+    effectiveness of ReflexionPlus.
+    
+    Design:
+    - First 2 attempts: Standard Reflexion (low cost)
+    - If still failing: Switch to ReflexionPlus deep analysis (high cost but effective)
+    - Goal: Achieve ~100% success rate while keeping cost reasonable
+    """
+
+    name = "adaptive_reflexion"
+
+    def __init__(self, backend: LLMBackend, max_attempts: int = 5, switch_threshold: int = 2) -> None:
+        super().__init__(backend, max_attempts)
+        self.switch_threshold = switch_threshold
+        self.reflexion_plus = ReflexionPlus(backend, max_attempts, switch_threshold)
+
+    def solve(self, task: Task, insights: list[str]) -> TaskOutcome:
+        calls = 0
+        reflections: list[str] = []
+        first_passed = False
+        
+        # Phase 1: Standard Reflexion for first N attempts
+        for attempt in range(self.switch_threshold):
+            context = GenerationContext(
+                attempt=attempt, reflections=reflections, insights=insights
+            )
+            code = self.backend.generate(task, context)
+            calls += 1
+            passed, output = self._verify(task, code)
+            if attempt == 0:
+                first_passed = passed
+            if passed:
+                return TaskOutcome(task.id, True, first_passed, attempt + 1, calls)
+            
+            # Standard reflection
+            reflection = self.backend.reflect(task, code, output)
+            calls += 1
+            reflections.append(reflection)
+        
+        # Phase 2: If still failing, switch to ReflexionPlus deep analysis
+        # Continue with remaining attempts using enhanced reflection
+        remaining_attempts = self.max_attempts - self.switch_threshold
+        if remaining_attempts > 0:
+            for attempt in range(remaining_attempts):
+                context = GenerationContext(
+                    attempt=self.switch_threshold + attempt, 
+                    reflections=reflections, 
+                    insights=insights
+                )
+                code = self.backend.generate(task, context)
+                calls += 1
+                passed, output = self._verify(task, code)
+                if passed:
+                    return TaskOutcome(task.id, True, first_passed, 
+                                     self.switch_threshold + attempt + 1, calls)
+                
+                # Enhanced reflection with detailed failure analysis
+                enhanced_reflection = self._enhanced_reflect(task, code, output)
+                calls += 1
+                reflections.append(enhanced_reflection)
+        
+        return TaskOutcome(task.id, False, first_passed, self.max_attempts, calls)
+    
+    def _enhanced_reflect(self, task: Task, code: str, output: str) -> str:
+        """Extract detailed failure information from test output."""
+        base_reflection = self.backend.reflect(task, code, output)
+        
+        enhanced = f"BASE REFLECTION: {base_reflection}\n\n"
+        enhanced += "DETAILED FAILURE ANALYSIS:\n"
+        
+        # Look for assertion errors with expected/actual values
+        lines = output.split('\n')
+        for i, line in enumerate(lines):
+            if 'AssertionError' in line or 'FAIL:' in line:
+                enhanced += f"  {line.strip()}\n"
+                # Include the next few lines for context
+                for j in range(i+1, min(i+4, len(lines))):
+                    if lines[j].strip():
+                        enhanced += f"  {lines[j].strip()}\n"
+        
+        enhanced += "\nFIX STRATEGY: Based on the specific failure above, "
+        enhanced += "identify the exact condition that failed and adjust your code accordingly."
+        
+        return enhanced
+
+
 STRATEGY_REGISTRY: dict[str, type[Strategy]] = {
     Direct.name: Direct,
     BestOfN.name: BestOfN,
@@ -290,4 +378,5 @@ STRATEGY_REGISTRY: dict[str, type[Strategy]] = {
     Reflexion.name: Reflexion,
     ReflexionPlus.name: ReflexionPlus,
     ReflexionPlusInsights.name: ReflexionPlusInsights,
+    AdaptiveReflexion.name: AdaptiveReflexion,
 }

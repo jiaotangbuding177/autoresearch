@@ -21,6 +21,7 @@ DEFAULT_STRATEGIES = (
     "reflexion",
     "reflexion_plus",
     "reflexion_insights",
+    "adaptive_reflexion",
 )
 
 

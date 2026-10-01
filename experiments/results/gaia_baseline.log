@@ -1,0 +1,116 @@
+=== GAIA Baseline Experiment ===
+Model: glm-4-flash
+Total tasks: 25
+
+--- Seed 1 ---
+✓ math_apples          | math         | Expected: 6               | Got: 6 apples
+✗ math_price           | math         | Expected: 25              | Got: $65
+✓ math_percentage      | math         | Expected: 30              | Got: 30
+✓ math_age             | math         | Expected: 25              | Got: 25
+✓ math_distance        | math         | Expected: 10              | Got: 10 km
+✗ logic_cats           | logic        | Expected: no              | Got: Yes
+✗ logic_rain           | logic        | Expected: not necessarily | Got: Yes
+✓ logic_syllogism      | logic        | Expected: yes             | Got: Yes
+✓ logic_sequence       | logic        | Expected: 10              | Got: 10
+✓ logic_comparison     | logic        | Expected: yes             | Got: Yes
+✓ cs_umbrella          | common_sense | Expected: umbrella        | Got: Umbrella
+✓ cs_hot               | common_sense | Expected: pain            | Got: Pain
+✓ cs_food              | common_sense | Expected: no              | Got: No
+✓ cs_time              | common_sense | Expected: beach           | Got: Swimsuit to the beach.
+✓ cs_tool              | common_sense | Expected: scissors        | Got: Scissors
+✓ temp_3hours          | temporal     | Expected: 1:00 pm         | Got: 1:00 PM
+✓ temp_yesterday       | temporal     | Expected: tuesday         | Got: Tuesday
+✓ temp_days            | temporal     | Expected: 7               | Got: 7
+✓ temp_months          | temporal     | Expected: 12              | Got: 12
+✓ temp_duration        | temporal     | Expected: 9:00 pm         | Got: 9:00 PM
+✓ spatial_room         | spatial      | Expected: 8               | Got: 8
+✓ spatial_direction    | spatial      | Expected: east            | Got: East
+✓ spatial_opposite     | spatial      | Expected: down            | Got: Down
+✓ spatial_shape        | spatial      | Expected: 3               | Got: 3
+✓ spatial_corners      | spatial      | Expected: 8               | Got: 8
+
+Seed 1 Results: 22/25 = 88.00%
+
+By Category:
+  math           : 4/5 = 80.00%
+  logic          : 3/5 = 60.00%
+  common_sense   : 5/5 = 100.00%
+  temporal       : 5/5 = 100.00%
+  spatial        : 5/5 = 100.00%
+
+--- Seed 2 ---
+✓ math_apples          | math         | Expected: 6               | Got: 6 apples
+✗ math_price           | math         | Expected: 25              | Got: $65
+✓ math_percentage      | math         | Expected: 30              | Got: 30
+✓ math_age             | math         | Expected: 25              | Got: 25 years old
+✓ math_distance        | math         | Expected: 10              | Got: 10 km
+✓ logic_cats           | logic        | Expected: no              | Got: It is not possible to definitively conclude that a
+✗ logic_rain           | logic        | Expected: not necessarily | Got: Yes.
+✓ logic_syllogism      | logic        | Expected: yes             | Got: Yes
+✓ logic_sequence       | logic        | Expected: 10              | Got: 10
+✓ logic_comparison     | logic        | Expected: yes             | Got: Yes
+✓ cs_umbrella          | common_sense | Expected: umbrella        | Got: Umbrella
+✓ cs_hot               | common_sense | Expected: pain            | Got: Pain
+✓ cs_food              | common_sense | Expected: no              | Got: No
+✓ cs_time              | common_sense | Expected: beach           | Got: Beach
+✓ cs_tool              | common_sense | Expected: scissors        | Got: Scissors
+✓ temp_3hours          | temporal     | Expected: 1:00 pm         | Got: 1:00 PM
+✓ temp_yesterday       | temporal     | Expected: tuesday         | Got: Tuesday
+✓ temp_days            | temporal     | Expected: 7               | Got: 7
+✓ temp_months          | temporal     | Expected: 12              | Got: 12
+✓ temp_duration        | temporal     | Expected: 9:00 pm         | Got: 9:00 PM
+✓ spatial_room         | spatial      | Expected: 8               | Got: 8
+✓ spatial_direction    | spatial      | Expected: east            | Got: East
+✓ spatial_opposite     | spatial      | Expected: down            | Got: Down
+✗ spatial_shape        | spatial      | Expected: 3               | Got: Three
+✓ spatial_corners      | spatial      | Expected: 8               | Got: 8
+
+Seed 2 Results: 22/25 = 88.00%
+
+By Category:
+  math           : 4/5 = 80.00%
+  logic          : 4/5 = 80.00%
+  common_sense   : 5/5 = 100.00%
+  temporal       : 5/5 = 100.00%
+  spatial        : 4/5 = 80.00%
+
+--- Seed 3 ---
+✓ math_apples          | math         | Expected: 6               | Got: 6 apples
+✗ math_price           | math         | Expected: 25              | Got: $65
+✓ math_percentage      | math         | Expected: 30              | Got: 30
+✓ math_age             | math         | Expected: 25              | Got: 25
+✓ math_distance        | math         | Expected: 10              | Got: 10 km
+✗ logic_cats           | logic        | Expected: no              | Got: Yes
+✗ logic_rain           | logic        | Expected: not necessarily | Got: Yes.
+✓ logic_syllogism      | logic        | Expected: yes             | Got: Yes
+✓ logic_sequence       | logic        | Expected: 10              | Got: 10
+✓ logic_comparison     | logic        | Expected: yes             | Got: Yes
+✓ cs_umbrella          | common_sense | Expected: umbrella        | Got: Umbrella
+✓ cs_hot               | common_sense | Expected: pain            | Got: Pain
+✓ cs_food              | common_sense | Expected: no              | Got: No
+✓ cs_time              | common_sense | Expected: beach           | Got: Beach
+✓ cs_tool              | common_sense | Expected: scissors        | Got: Scissors
+✓ temp_3hours          | temporal     | Expected: 1:00 pm         | Got: 1:00 PM
+✓ temp_yesterday       | temporal     | Expected: tuesday         | Got: Tuesday
+✓ temp_days            | temporal     | Expected: 7               | Got: 7
+✓ temp_months          | temporal     | Expected: 12              | Got: 12
+✓ temp_duration        | temporal     | Expected: 9:00 pm         | Got: 9:00 PM
+✓ spatial_room         | spatial      | Expected: 8               | Got: 8
+✓ spatial_direction    | spatial      | Expected: east            | Got: East
+✓ spatial_opposite     | spatial      | Expected: down            | Got: Down
+✓ spatial_shape        | spatial      | Expected: 3               | Got: 3
+✓ spatial_corners      | spatial      | Expected: 8               | Got: 8
+
+Seed 3 Results: 22/25 = 88.00%
+
+By Category:
+  math           : 4/5 = 80.00%
+  logic          : 3/5 = 60.00%
+  common_sense   : 5/5 = 100.00%
+  temporal       : 5/5 = 100.00%
+  spatial        : 5/5 = 100.00%
+
+=== Overall Results ===
+Total: 66/75 = 88.00%
+
+Results saved to: experiments/results/gaia_baseline.json

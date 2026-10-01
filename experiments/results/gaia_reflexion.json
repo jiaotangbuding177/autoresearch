@@ -1,0 +1,43 @@
+{
+  "experiment": "gaia_reflexion",
+  "backend": "openai",
+  "model": "glm-4-flash",
+  "strategy": "reflexion",
+  "max_attempts": 3,
+  "timestamp": "2026-10-01T16:56:45.439839",
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "total_tasks": 25,
+  "results": [
+    {
+      "seed": 1,
+      "correct": 24,
+      "total": 25,
+      "accuracy": 0.96,
+      "avg_attempts": 1.125
+    },
+    {
+      "seed": 2,
+      "correct": 24,
+      "total": 25,
+      "accuracy": 0.96,
+      "avg_attempts": 1.0833333333333333
+    },
+    {
+      "seed": 3,
+      "correct": 25,
+      "total": 25,
+      "accuracy": 1.0,
+      "avg_attempts": 1.08
+    }
+  ],
+  "overall": {
+    "total_correct": 73,
+    "total_tasks": 75,
+    "overall_accuracy": 0.9733333333333334,
+    "avg_attempts": 1.096111111111111
+  }
+}

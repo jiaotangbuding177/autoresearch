@@ -1,0 +1,105 @@
+=== GAIA with Reflexion ===
+Model: glm-4-flash
+Max attempts: 3
+Total tasks: 25
+
+--- Seed 1 ---
+✓ math_apples          | Attempts: 2 | math
+✓ math_price           | Attempts: 2 | math
+✓ math_percentage      | Attempts: 1 | math
+✓ math_age             | Attempts: 1 | math
+✓ math_distance        | Attempts: 1 | math
+✓ logic_cats           | Attempts: 2 | logic
+✗ logic_rain           | Attempts: 3 | logic
+✓ logic_syllogism      | Attempts: 1 | logic
+✓ logic_sequence       | Attempts: 1 | logic
+✓ logic_comparison     | Attempts: 1 | logic
+✓ cs_umbrella          | Attempts: 1 | common_sense
+✓ cs_hot               | Attempts: 1 | common_sense
+✓ cs_food              | Attempts: 1 | common_sense
+✓ cs_time              | Attempts: 1 | common_sense
+✓ cs_tool              | Attempts: 1 | common_sense
+✓ temp_3hours          | Attempts: 1 | temporal
+✓ temp_yesterday       | Attempts: 1 | temporal
+✓ temp_days            | Attempts: 1 | temporal
+✓ temp_months          | Attempts: 1 | temporal
+✓ temp_duration        | Attempts: 1 | temporal
+✓ spatial_room         | Attempts: 1 | spatial
+✓ spatial_direction    | Attempts: 1 | spatial
+✓ spatial_opposite     | Attempts: 1 | spatial
+✓ spatial_shape        | Attempts: 1 | spatial
+✓ spatial_corners      | Attempts: 1 | spatial
+
+Seed 1 Results: 24/25 = 96.00%
+Average attempts (for correct): 1.12
+
+--- Seed 2 ---
+✓ math_apples          | Attempts: 1 | math
+✓ math_price           | Attempts: 2 | math
+✓ math_percentage      | Attempts: 1 | math
+✓ math_age             | Attempts: 1 | math
+✓ math_distance        | Attempts: 1 | math
+✓ logic_cats           | Attempts: 2 | logic
+✗ logic_rain           | Attempts: 3 | logic
+✓ logic_syllogism      | Attempts: 1 | logic
+✓ logic_sequence       | Attempts: 1 | logic
+✓ logic_comparison     | Attempts: 1 | logic
+✓ cs_umbrella          | Attempts: 1 | common_sense
+✓ cs_hot               | Attempts: 1 | common_sense
+✓ cs_food              | Attempts: 1 | common_sense
+✓ cs_time              | Attempts: 1 | common_sense
+✓ cs_tool              | Attempts: 1 | common_sense
+✓ temp_3hours          | Attempts: 1 | temporal
+✓ temp_yesterday       | Attempts: 1 | temporal
+✓ temp_days            | Attempts: 1 | temporal
+✓ temp_months          | Attempts: 1 | temporal
+✓ temp_duration        | Attempts: 1 | temporal
+✓ spatial_room         | Attempts: 1 | spatial
+✓ spatial_direction    | Attempts: 1 | spatial
+✓ spatial_opposite     | Attempts: 1 | spatial
+✓ spatial_shape        | Attempts: 1 | spatial
+✓ spatial_corners      | Attempts: 1 | spatial
+
+Seed 2 Results: 24/25 = 96.00%
+Average attempts (for correct): 1.08
+
+--- Seed 3 ---
+✓ math_apples          | Attempts: 1 | math
+✓ math_price           | Attempts: 2 | math
+✓ math_percentage      | Attempts: 1 | math
+✓ math_age             | Attempts: 1 | math
+✓ math_distance        | Attempts: 1 | math
+✓ logic_cats           | Attempts: 1 | logic
+✓ logic_rain           | Attempts: 2 | logic
+✓ logic_syllogism      | Attempts: 1 | logic
+✓ logic_sequence       | Attempts: 1 | logic
+✓ logic_comparison     | Attempts: 1 | logic
+✓ cs_umbrella          | Attempts: 1 | common_sense
+✓ cs_hot               | Attempts: 1 | common_sense
+✓ cs_food              | Attempts: 1 | common_sense
+✓ cs_time              | Attempts: 1 | common_sense
+✓ cs_tool              | Attempts: 1 | common_sense
+✓ temp_3hours          | Attempts: 1 | temporal
+✓ temp_yesterday       | Attempts: 1 | temporal
+✓ temp_days            | Attempts: 1 | temporal
+✓ temp_months          | Attempts: 1 | temporal
+✓ temp_duration        | Attempts: 1 | temporal
+✓ spatial_room         | Attempts: 1 | spatial
+✓ spatial_direction    | Attempts: 1 | spatial
+✓ spatial_opposite     | Attempts: 1 | spatial
+✓ spatial_shape        | Attempts: 1 | spatial
+✓ spatial_corners      | Attempts: 1 | spatial
+
+Seed 3 Results: 25/25 = 100.00%
+Average attempts (for correct): 1.08
+
+=== Overall Results ===
+Total: 73/75 = 97.33%
+Average attempts: 1.10
+
+=== Comparison with Baseline ===
+Baseline: 88.00% (no self-evolution)
+Reflexion: 97.33% (with self-evolution)
+Improvement: +9.33%
+
+Results saved to: experiments/results/gaia_reflexion.json
