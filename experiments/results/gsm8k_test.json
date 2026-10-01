@@ -1,0 +1,25 @@
+{
+  "experiment": "gsm8k_benchmark",
+  "backend": "openai",
+  "model": "glm-4-flash",
+  "timestamp": "2026-10-01T21:25:22.499281",
+  "max_samples": 5,
+  "seeds": [
+    1
+  ],
+  "results": [
+    {
+      "seed": 1,
+      "baseline_accuracy": 0.8,
+      "reflexion_accuracy": 0.8,
+      "improvement": 0.0,
+      "avg_attempts": 1.4
+    }
+  ],
+  "overall": {
+    "avg_baseline_accuracy": 0.8,
+    "avg_reflexion_accuracy": 0.8,
+    "avg_improvement": 0.0,
+    "avg_attempts": 1.4
+  }
+}

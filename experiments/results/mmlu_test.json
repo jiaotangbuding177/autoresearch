@@ -1,0 +1,25 @@
+{
+  "experiment": "mmlu_benchmark",
+  "backend": "openai",
+  "model": "glm-4-flash",
+  "timestamp": "2026-10-02T01:15:55.345523",
+  "max_samples": 10,
+  "seeds": [
+    1
+  ],
+  "results": [
+    {
+      "seed": 1,
+      "baseline_accuracy": 0.3,
+      "reflexion_accuracy": 0.8,
+      "improvement": 0.5,
+      "avg_attempts": 2.1
+    }
+  ],
+  "overall": {
+    "avg_baseline_accuracy": 0.3,
+    "avg_reflexion_accuracy": 0.8,
+    "avg_improvement": 0.5,
+    "avg_attempts": 2.1
+  }
+}

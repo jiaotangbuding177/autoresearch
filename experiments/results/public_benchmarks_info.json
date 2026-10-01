@@ -1,0 +1,17 @@
+{
+  "gsm8k": {
+    "train": 7473,
+    "test": 1319
+  },
+  "mmlu": {
+    "test": 14042,
+    "validation": 1531,
+    "dev": 285,
+    "auxiliary_train": 99842
+  },
+  "arc": {
+    "train": 1119,
+    "test": 1172,
+    "validation": 299
+  }
+}
