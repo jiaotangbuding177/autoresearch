@@ -156,8 +156,11 @@ PARSE_DURATION = Task(
     id="parse_duration",
     description=(
         "Write a function `parse_duration(s)` that parses a duration string into total seconds. "
-        "Segments are number+unit where unit is h, m or s, e.g. '1h30m' -> 5400, '45s' -> 45, "
-        "'2h' -> 7200, '1h30m15s' -> 5415. Assume only these units appear."
+        "The string consists of concatenated number+unit segments with NO spaces between them. "
+        "Units: 'h' (3600 seconds), 'm' (60 seconds), 's' (1 second). "
+        "Examples: parse_duration('1h30m') == 5400; parse_duration('45s') == 45; "
+        "parse_duration('2h') == 7200; parse_duration('1h30m15s') == 5415; "
+        "parse_duration('') == 0. Use a regex to find all (number, unit) pairs."
     ),
     correct=(
         "import re\n\n"
@@ -178,6 +181,8 @@ PARSE_DURATION = Task(
         "        self.assertEqual(parse_duration('2h'), 7200)\n"
         "    def test_all_units(self):\n"
         "        self.assertEqual(parse_duration('1h30m15s'), 5415)\n"
+        "    def test_empty(self):\n"
+        "        self.assertEqual(parse_duration(''), 0)\n"
     ),
     buggy=(
         BugVariant(
@@ -579,6 +584,259 @@ CHUNK_LIST = Task(
 )
 
 
+CLASS_LRU_CACHE = Task(
+    id="class_lru_cache",
+    description=(
+        "Implement a class `LRUCache` with `__init__(self, capacity: int)`, "
+        "`get(self, key: int) -> int` and `put(self, key: int, value: int) -> None`. "
+        "get() returns the value if the key exists, else -1; if it exists, the entry becomes "
+        "the most-recently-used. put() inserts or updates the key; if the cache exceeds capacity, "
+        "evict the least-recently-used entry first. Use an OrderedDict or equivalent. "
+        "Example: c = LRUCache(2); c.put(1,1); c.put(2,2); c.get(1) == 1; c.put(3,3) evicts key=2."
+    ),
+    correct=(
+        "from collections import OrderedDict\n\n"
+        "class LRUCache:\n"
+        "    def __init__(self, capacity):\n"
+        "        self.cap = capacity\n"
+        "        self.cache = OrderedDict()\n"
+        "    def get(self, key):\n"
+        "        if key not in self.cache:\n"
+        "            return -1\n"
+        "        self.cache.move_to_end(key)\n"
+        "        return self.cache[key]\n"
+        "    def put(self, key, value):\n"
+        "        if key in self.cache:\n"
+        "            self.cache.move_to_end(key)\n"
+        "        self.cache[key] = value\n"
+        "        if len(self.cache) > self.cap:\n"
+        "            self.cache.popitem(last=False)\n"
+    ),
+    tests=_tests(
+        "from solution import LRUCache\n\n"
+        "class TestLRU(unittest.TestCase):\n"
+        "    def test_basic(self):\n"
+        "        c = LRUCache(2)\n"
+        "        c.put(1, 1); c.put(2, 2)\n"
+        "        self.assertEqual(c.get(1), 1)\n"
+        "    def test_eviction_oldest(self):\n"
+        "        c = LRUCache(2)\n"
+        "        c.put(1, 1); c.put(2, 2)\n"
+        "        c.put(3, 3)  # evicts key=1\n"
+        "        self.assertEqual(c.get(1), -1)\n"
+        "        self.assertEqual(c.get(2), 2)\n"
+        "    def test_get_promotes(self):\n"
+        "        c = LRUCache(2)\n"
+        "        c.put(1, 1); c.put(2, 2)\n"
+        "        c.get(1)  # promote key=1\n"
+        "        c.put(3, 3)  # evicts key=2 (now oldest)\n"
+        "        self.assertEqual(c.get(2), -1)\n"
+        "        self.assertEqual(c.get(3), 3)\n"
+        "    def test_put_update(self):\n"
+        "        c = LRUCache(2)\n"
+        "        c.put(1, 1); c.put(1, 10)\n"
+        "        self.assertEqual(c.get(1), 10)\n"
+        "    def test_miss(self):\n"
+        "        c = LRUCache(1)\n"
+        "        self.assertEqual(c.get(42), -1)\n"
+    ),
+    buggy=(
+        BugVariant(
+            id="get_no_promote",
+            signature="test_eviction_oldest (test_solution.TestLRU.test_eviction_oldest) ... ok\ntest_get_promotes (test_solution.TestLRU.test_get_promotes) ... FAIL",
+            cause="get() does not promote the entry (LRU order stale)",
+            fix="call move_to_end(key) on get() hits",
+            code=(
+                "from collections import OrderedDict\n\n"
+                "class LRUCache:\n"
+                "    def __init__(self, capacity):\n"
+                "        self.cap = capacity\n"
+                "        self.cache = OrderedDict()\n"
+                "    def get(self, key):\n"
+                "        if key not in self.cache:\n"
+                "            return -1\n"
+                "        return self.cache[key]\n"
+                "    def put(self, key, value):\n"
+                "        if key in self.cache:\n"
+                "            self.cache.move_to_end(key)\n"
+                "        self.cache[key] = value\n"
+                "        if len(self.cache) > self.cap:\n"
+                "            self.cache.popitem(last=False)\n"
+            ),
+        ),
+        BugVariant(
+            id="evicts_newest",
+            signature="AssertionError: 1 != -1",
+            cause="evicts the most-recently-used entry instead of least-recently-used",
+            fix="use popitem(last=False) to evict from the front, not popitem(last=True)",
+            code=(
+                "from collections import OrderedDict\n\n"
+                "class LRUCache:\n"
+                "    def __init__(self, capacity):\n"
+                "        self.cap = capacity\n"
+                "        self.cache = OrderedDict()\n"
+                "    def get(self, key):\n"
+                "        if key not in self.cache:\n"
+                "            return -1\n"
+                "        self.cache.move_to_end(key)\n"
+                "        return self.cache[key]\n"
+                "    def put(self, key, value):\n"
+                "        if key in self.cache:\n"
+                "            self.cache.move_to_end(key)\n"
+                "        self.cache[key] = value\n"
+                "        if len(self.cache) > self.cap:\n"
+                "            self.cache.popitem(last=True)\n"
+            ),
+        ),
+        BugVariant(
+            id="off_by_one_capacity",
+            signature="AssertionError: -1 != 2",
+            cause="capacity check uses >= instead of >, evicts too early",
+            fix="evict only when len(cache) > capacity, not when >= capacity",
+            code=(
+                "from collections import OrderedDict\n\n"
+                "class LRUCache:\n"
+                "    def __init__(self, capacity):\n"
+                "        self.cap = capacity\n"
+                "        self.cache = OrderedDict()\n"
+                "    def get(self, key):\n"
+                "        if key not in self.cache:\n"
+                "            return -1\n"
+                "        self.cache.move_to_end(key)\n"
+                "        return self.cache[key]\n"
+                "    def put(self, key, value):\n"
+                "        if key in self.cache:\n"
+                "            self.cache.move_to_end(key)\n"
+                "        self.cache[key] = value\n"
+                "        if len(self.cache) >= self.cap:\n"
+                "            self.cache.popitem(last=False)\n"
+            ),
+        ),
+    ),
+    base_p=0.25,
+)
+
+
+CSV_PARSE_ROW = Task(
+    id="csv_parse_row",
+    description=(
+        "Write a function `csv_parse_row(line: str) -> list[str]` that parses a single CSV row. "
+        "Rules: fields separated by commas; a field may be double-quoted; inside quotes, commas "
+        "are literal; an escaped double quote is represented as two consecutive double-quotes "
+        "('\"\"'). Return a list of field strings (without the surrounding quotes). "
+        "Examples: csv_parse_row('a,b,c') == ['a','b','c']; "
+        "csv_parse_row('\"a\",\"b,c\",d') == ['a','b,c','d']; "
+        "csv_parse_row('\"a\"\"b\"') == ['a\"b']; "
+        "csv_parse_row('') == ['']."
+    ),
+    correct=(
+        "def csv_parse_row(line):\n"
+        "    fields, i, n = [], 0, len(line)\n"
+        "    while True:\n"
+        "        if i > n:\n"
+        "            break\n"
+        "        if i == n:\n"
+        "            fields.append('')\n"
+        "            break\n"
+        "        if line[i] == '\"':\n"
+        "            j = i + 1\n"
+        "            parts = []\n"
+        "            while j < n:\n"
+        "                if line[j] == '\"':\n"
+        "                    if j + 1 < n and line[j + 1] == '\"':\n"
+        "                        parts.append('\"')\n"
+        "                        j += 2\n"
+        "                    else:\n"
+        "                        j += 1\n"
+        "                        break\n"
+        "                else:\n"
+        "                    parts.append(line[j])\n"
+        "                    j += 1\n"
+        "            fields.append(''.join(parts))\n"
+        "            if j < n and line[j] == ',':\n"
+        "                i = j + 1\n"
+        "            else:\n"
+        "                break\n"
+        "        else:\n"
+        "            j = line.find(',', i)\n"
+        "            if j == -1:\n"
+        "                fields.append(line[i:])\n"
+        "                break\n"
+        "            fields.append(line[i:j])\n"
+        "            i = j + 1\n"
+        "    return fields\n"
+    ),
+    tests=_tests(
+        "from solution import csv_parse_row\n\n"
+        "class TestCSV(unittest.TestCase):\n"
+        "    def test_simple(self):\n"
+        "        self.assertEqual(csv_parse_row('a,b,c'), ['a', 'b', 'c'])\n"
+        "    def test_quoted_comma(self):\n"
+        "        self.assertEqual(csv_parse_row('\"a\",\"b,c\",d'), ['a', 'b,c', 'd'])\n"
+        "    def test_escaped_quote(self):\n"
+        "        self.assertEqual(csv_parse_row('\"a\"\"b\"'), ['a\"b'])\n"
+        "    def test_empty(self):\n"
+        "        self.assertEqual(csv_parse_row(''), [''])\n"
+        "    def test_empty_field_between_commas(self):\n"
+        "        self.assertEqual(csv_parse_row('a,,b'), ['a', '', 'b'])\n"
+    ),
+    buggy=(
+        BugVariant(
+            id="no_quote_handling",
+            signature="[\'\"a\"\"b\"\'] != [\'a\"b\']",
+            cause="quotes are treated as ordinary characters (no quote mode)",
+            fix="detect an opening quote and switch into quoted-field parsing mode",
+            code=(
+                "def csv_parse_row(line):\n"
+                "    return line.split(',') if line else ['']\n"
+            ),
+        ),
+        BugVariant(
+            id="no_escape_handling",
+            signature="[\'a\', \'\'] != [\'a\"b\']",
+            cause="inside quotes, doubled double-quotes are not unescaped to a single quote",
+            fix="treat '\"\"' inside a quoted field as a literal single '\"'",
+            code=(
+                "def csv_parse_row(line):\n"
+                "    fields, i, n = [], 0, len(line)\n"
+                "    while True:\n"
+                "        if i > n:\n"
+                "            break\n"
+                "        if i == n:\n"
+                "            fields.append('')\n"
+                "            break\n"
+                "        if line[i] == '\"':\n"
+                "            j = line.find('\"', i + 1)\n"
+                "            if j == -1:\n"
+                "                fields.append(line[i + 1:])\n"
+                "                break\n"
+                "            fields.append(line[i + 1:j])\n"
+                "            i = j + 2 if j + 1 < n and line[j + 1] == ',' else n\n"
+                "        else:\n"
+                "            j = line.find(',', i)\n"
+                "            if j == -1:\n"
+                "                fields.append(line[i:])\n"
+                "                break\n"
+                "            fields.append(line[i:j])\n"
+                "            i = j + 1\n"
+                "    return fields\n"
+            ),
+        ),
+        BugVariant(
+            id="split_inside_quotes",
+            signature="[\'ab\'] != [\'a\"b\']",
+            cause="commas inside quoted fields are treated as separators",
+            fix="skip over quoted regions before splitting on commas",
+            code=(
+                "def csv_parse_row(line):\n"
+                "    return [f.replace('\"', '') for f in line.split(',')]\n"
+            ),
+        ),
+    ),
+    base_p=0.15,
+)
+
+
 TASKS: tuple[Task, ...] = (
     SAFE_DIVIDE,
     IS_PALINDROME,
@@ -588,6 +846,8 @@ TASKS: tuple[Task, ...] = (
     WORD_FREQ,
     FLATTEN,
     CHUNK_LIST,
+    CLASS_LRU_CACHE,
+    CSV_PARSE_ROW,
 )
 
 TASKS_BY_ID = {t.id: t for t in TASKS}

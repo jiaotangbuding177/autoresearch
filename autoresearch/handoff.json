@@ -2,8 +2,8 @@
   "goal": "LLM Agent 评测基准与自我进化机制的系统性调研",
   "archetype": "document",
   "mode": "single-pass",
-  "waves": 2,
-  "iterations_completed": 14,
+  "waves": 3,
+  "iterations_completed": 15,
   "status": "converged",
   "artifacts": {
     "main_report": "output/agent-evaluation-self-evolution-report.md",
@@ -22,13 +22,20 @@
       "autoresearch/logs/iteration-12-critic-cove-expel.md",
       "autoresearch/logs/iteration-13-latest-benchmarks.md",
       "autoresearch/logs/iteration-14-experiment-design.md",
-      "autoresearch/logs/iteration-14-results.md"
+      "autoresearch/logs/iteration-14-results.md",
+      "autoresearch/logs/iteration-15-glm-flash-10tasks.md"
     ],
     "experiment_framework": {
       "root": "experiments/",
       "entry": "experiments/run_experiment.py",
       "verifier": "experiments/scripts/verify_tasks.py",
-      "headline_results": "experiments/results/experiment-mock-260930-180645.json",
+      "tasks": "experiments/evolve_lab/tasks.py",
+      "task_count": 10,
+      "buggy_variants": 25,
+      "headline_results": "experiments/results/experiment-openai-261001-045035.json",
+      "mock_results": [
+        "experiments/results/experiment-mock-260930-180645.json"
+      ],
       "sensitivity": [
         "experiments/results/sens-0.2.txt",
         "experiments/results/sens-0.35.txt",
@@ -42,22 +49,34 @@
     "blind_spots_identified": 7,
     "bottlenecks_identified": 5,
     "experiment_strategies_compared": 5,
-    "experiment_seeds": 30,
-    "tasks_verified": "8 tasks / 19 buggy variants, signature contract all green"
+    "experiment_seeds_mock": 30,
+    "experiment_seeds_real": 1,
+    "tasks_verified": "10 tasks / 25 buggy variants, signature contract all green",
+    "real_backend_results": {
+      "model": "GLM-4-Flash",
+      "best_strategy": "reflexion_insights",
+      "best_success_rate": 1.0,
+      "best_first_try_rate": 1.0
+    }
   },
   "key_experiment_findings": [
-    "外部反馈确立优势: reflexion(1.00) >= self_refine(0.93) >= best_of_n(0.86) > direct(0.33)",
-    "跨任务洞察迁移可量化: first-try 0.52 vs 0.33; 学习曲线 0.38 -> 0.65",
-    "天花板效应: 成功率饱和时需切换到首尝试率/效率指标",
-    "敏感度稳健: critique_accuracy 0.2/0.35/0.5 三档下策略排序一致"
+    "Wave 2 (mock): reflexion 1.00 >= self_refine 0.93 >= best_of_n 0.86 > direct 0.33",
+    "Wave 2 (mock): 跨任务洞察迁移可量化 - first-try 0.52 vs 0.33; 学习曲线 0.38 -> 0.65",
+    "Wave 2 (mock): 天花板效应 - 成功率饱和时需切换到首尝试率/效率指标",
+    "Wave 3 (real GLM-4-Flash): 10 任务套件成功打破天花板",
+    "Wave 3 (real): reflexion_insights 达到 100% 首次成功率",
+    "Wave 3 (real): csv_parse_row 成为关键区分器 - 只有反思方法解决",
+    "Wave 3 (real): Mock 预测 vs 真实结果差异显著 - 真实模型远比 mock 强",
+    "Wave 3 (real): 真实 LLM 错误模式经常超出预设 buggy 变体池"
   ],
   "pending": [
-    "真实后端实验（需 OPENAI_API_KEY）",
-    "git push 到远程（需 GitHub 认证: gh auth login）"
+    "多种子实验验证结果稳定性 (seeds 1-5)",
+    "测试更强模型 (GPT-4, Claude) 的表现"
   ],
   "next_suggested_steps": [
-    "配置 API key 后运行 --backend openai 对比 mock 与真实模型差异",
-    "基于 evolve_lab 添加更多任务（多文件、长上下文）以接近 τ-bench 的交付型评测",
-    "验证 GEPA 式反思-进化组合策略（在 evolve_lab 中实现后对比）"
+    "运行多种子实验 (--seeds 1,2,3,4,5) 验证稳定性",
+    "测试 GPT-4 或 Claude 等更强模型",
+    "添加更多复杂任务（多步推理、数据结构操作）",
+    "应用到真实代码生成场景（如 GitHub Issue 解决）"
   ]
 }

@@ -179,30 +179,59 @@ class OpenAIBackend(LLMBackend):
 
     Env: OPENAI_API_KEY (required), OPENAI_BASE_URL (optional; e.g. a DeepSeek,
     Zhipu or local vLLM endpoint).
+
+    Retry policy (layered):
+    - inner: openai client max_retries=5 (handles 429 + 5xx with exp. backoff)
+    - outer: up to outer_retries additional calls on any exception, with jitter
     """
 
     name = "openai"
 
-    def __init__(self, model: str = "gpt-4o-mini", temperature: float = 0.7) -> None:
+    def __init__(
+        self,
+        model: str = "gpt-4o-mini",
+        temperature: float = 0.7,
+        max_tokens: int = 1024,
+        outer_retries: int = 3,
+        base_delay: float = 1.0,
+    ) -> None:
         try:
-            from openai import OpenAI  # noqa: PLC0415
+            from openai import OpenAI, APIConnectionError, APITimeoutError, RateLimitError  # noqa: PLC0415
         except ImportError as exc:  # pragma: no cover
             raise RuntimeError("pip install openai to use the OpenAI backend") from exc
         api_key = os.environ.get("OPENAI_API_KEY")
         if not api_key:
             raise RuntimeError("OPENAI_API_KEY is not set")
         base_url = os.environ.get("OPENAI_BASE_URL") or None
-        self.client = OpenAI(api_key=api_key, base_url=base_url)
+        self._errors = (APIConnectionError, APITimeoutError, RateLimitError)
+        self.client = OpenAI(api_key=api_key, base_url=base_url, max_retries=5)
         self.model = model
         self.temperature = temperature
+        self.max_tokens = max_tokens
+        self.outer_retries = outer_retries
+        self.base_delay = base_delay
+        self._rng = random.Random()
 
     def _chat(self, prompt: str) -> str:
-        response = self.client.chat.completions.create(
-            model=self.model,
-            temperature=self.temperature,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        return (response.choices[0].message.content or "").strip()
+        last_exc: Exception | None = None
+        for attempt in range(self.outer_retries + 1):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    temperature=self.temperature,
+                    max_tokens=self.max_tokens,
+                    messages=[{"role": "user", "content": prompt}],
+                )
+                return (response.choices[0].message.content or "").strip()
+            except self._errors as exc:  # pragma: no cover - transient path
+                last_exc = exc
+                if attempt < self.outer_retries:
+                    delay = self.base_delay * (2 ** attempt) + self._rng.uniform(0, 0.5)
+                    import time as _t
+                    _t.sleep(delay)
+                    continue
+                raise
+        raise last_exc  # pragma: no cover
 
     def generate(self, task: Task, context: GenerationContext) -> str:
         prompt = _GEN_PROMPT.format(description=task.description, memory=_memory_block(context))

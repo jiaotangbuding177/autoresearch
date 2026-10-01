@@ -1,0 +1,66 @@
+[seed=1] strategy: direct
+  [direct            ] PASS safe_divide      (first-try, 1 calls, 4.15s)
+  [direct            ] PASS is_palindrome    (first-try, 1 calls, 2.74s)
+  [direct            ] PASS parse_duration   (first-try, 1 calls, 5.31s)
+  [direct            ] PASS merge_intervals  (first-try, 1 calls, 7.28s)
+  [direct            ] PASS fib              (first-try, 1 calls, 3.98s)
+  [direct            ] FAIL word_freq        (1 tries, 1 calls, 5.93s)
+  [direct            ] PASS flatten          (first-try, 1 calls, 7.11s)
+  [direct            ] PASS chunk_list       (first-try, 1 calls, 2.49s)
+  [direct            ] PASS class_lru_cache  (first-try, 1 calls, 9.38s)
+  [direct            ] FAIL csv_parse_row    (1 tries, 1 calls, 6.92s)
+[seed=1] strategy: best_of_n
+  [best_of_n         ] PASS safe_divide      (first-try, 1 calls, 2.91s)
+  [best_of_n         ] PASS is_palindrome    (first-try, 1 calls, 2.80s)
+  [best_of_n         ] PASS parse_duration   (first-try, 1 calls, 6.67s)
+  [best_of_n         ] PASS merge_intervals  (first-try, 1 calls, 8.96s)
+  [best_of_n         ] PASS fib              (first-try, 1 calls, 3.33s)
+  [best_of_n         ] PASS word_freq        (first-try, 1 calls, 4.35s)
+  [best_of_n         ] PASS flatten          (first-try, 1 calls, 2.69s)
+  [best_of_n         ] PASS chunk_list       (first-try, 1 calls, 1.99s)
+  [best_of_n         ] PASS class_lru_cache  (first-try, 1 calls, 7.46s)
+  [best_of_n         ] FAIL csv_parse_row    (5 tries, 5 calls, 38.50s)
+[seed=1] strategy: self_refine
+  [self_refine       ] PASS safe_divide      (first-try, 1 calls, 2.97s)
+  [self_refine       ] PASS is_palindrome    (first-try, 1 calls, 5.47s)
+  [self_refine       ] PASS parse_duration   (first-try, 1 calls, 4.96s)
+  [self_refine       ] PASS merge_intervals  (first-try, 1 calls, 5.63s)
+  [self_refine       ] PASS fib              (first-try, 1 calls, 2.61s)
+  [self_refine       ] PASS word_freq        (first-try, 1 calls, 5.68s)
+  [self_refine       ] PASS flatten          (first-try, 1 calls, 2.37s)
+  [self_refine       ] PASS chunk_list       (first-try, 1 calls, 3.34s)
+  [self_refine       ] PASS class_lru_cache  (first-try, 1 calls, 11.13s)
+  [self_refine       ] FAIL csv_parse_row    (5 tries, 9 calls, 119.89s)
+[seed=1] strategy: reflexion
+  [reflexion         ] PASS safe_divide      (first-try, 1 calls, 3.22s)
+  [reflexion         ] PASS is_palindrome    (first-try, 1 calls, 3.42s)
+  [reflexion         ] PASS parse_duration   (first-try, 1 calls, 6.25s)
+  [reflexion         ] PASS merge_intervals  (first-try, 1 calls, 11.56s)
+  [reflexion         ] PASS fib              (first-try, 1 calls, 5.11s)
+  [reflexion         ] PASS word_freq        (first-try, 1 calls, 5.44s)
+  [reflexion         ] PASS flatten          (first-try, 1 calls, 4.20s)
+  [reflexion         ] PASS chunk_list       (first-try, 1 calls, 7.86s)
+  [reflexion         ] PASS class_lru_cache  (first-try, 1 calls, 7.63s)
+  [reflexion         ] PASS csv_parse_row    (3 tries, 5 calls, 35.17s)
+[seed=1] strategy: reflexion_insights
+  [reflexion_insights] PASS safe_divide      (first-try, 2 calls, 7.77s)
+  [reflexion_insights] PASS is_palindrome    (first-try, 2 calls, 3.64s)
+  [reflexion_insights] PASS parse_duration   (first-try, 2 calls, 7.98s)
+  [reflexion_insights] PASS merge_intervals  (first-try, 2 calls, 9.48s)
+  [reflexion_insights] PASS fib              (first-try, 2 calls, 6.52s)
+  [reflexion_insights] PASS word_freq        (first-try, 2 calls, 31.36s)
+  [reflexion_insights] PASS flatten          (first-try, 2 calls, 5.81s)
+  [reflexion_insights] PASS chunk_list       (first-try, 2 calls, 8.24s)
+  [reflexion_insights] PASS class_lru_cache  (first-try, 2 calls, 10.71s)
+  [reflexion_insights] PASS csv_parse_row    (first-try, 2 calls, 18.93s)
+
+=== Aggregate (mean over seeds) ===
+strategy              success  first-try  attempts   calls  1st-half  2nd-half
+------------------------------------------------------------------------------
+direct                   0.80       0.80      1.00    10.0      1.00      0.60
+best_of_n                0.90       0.90      1.40    14.0      1.00      0.80
+self_refine              0.90       0.90      1.40    18.0      1.00      0.80
+reflexion                1.00       0.90      1.20    14.0      1.00      0.80
+reflexion_insights       1.00       1.00      1.00    20.0      1.00      1.00
+
+saved: D:\autoresearch\experiments\results\experiment-openai-261001-045035.json

@@ -78,7 +78,10 @@ def run_experiment(
         for strategy_name in strategies:
             if verbose:
                 print(f"[seed={seed}] strategy: {strategy_name}")
-            backend: LLMBackend = make_backend(backend_name, seed=seed, **backend_kwargs)
+            kw = dict(backend_kwargs)
+            if backend_name == "mock":
+                kw.setdefault("seed", seed)
+            backend: LLMBackend = make_backend(backend_name, **kw)
             strategy_cls = STRATEGY_REGISTRY[strategy_name]
             strategy = strategy_cls(backend, max_attempts=max_attempts)
             result = run_strategy(strategy, tasks, verbose=verbose)

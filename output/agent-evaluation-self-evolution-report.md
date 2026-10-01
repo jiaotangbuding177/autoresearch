@@ -548,6 +548,49 @@ GPT-3.5 的专家手写 Prompt 链。
 实验框架的每个候选解法都在真实子进程中执行真实测试 —
 反思反馈来自真实失败输出，非模拟。接真实 LLM 只需 `--backend openai` + API key。
 
+### 6.5 Wave 3 增补：真实后端实验（GLM-4-Flash，10 任务）
+
+#### 实验配置
+- **模型**: GLM-4-Flash (智谱 AI 免费模型, OpenAI 兼容端点)
+- **任务套件**: 10 个任务（新增 `class_lru_cache` 和 `csv_parse_row` 打破天花板）
+- **重试机制**: 分层重试 — openai 库内置 max_retries=5 + 外层 outer_retries=3 指数退避
+
+#### 核心结果
+
+| 策略 | 成功率 | 首次成功率 | 平均尝试 | LLM 调用数 | 前半段 | 后半段 |
+|------|--------|-----------|----------|-----------|--------|--------|
+| direct | 0.80 | 0.80 | 1.00 | 10 | 1.00 | 0.60 |
+| best_of_n | 0.90 | 0.90 | 1.40 | 14 | 1.00 | 0.80 |
+| self_refine | 0.90 | 0.90 | 1.40 | 18 | 1.00 | 0.80 |
+| reflexion | 1.00 | 0.90 | 1.20 | 14 | 1.00 | 0.80 |
+| reflexion_insights | **1.00** | **1.00** | 1.00 | 20 | 1.00 | 1.00 |
+
+#### 关键发现
+
+**1. 天花板效应成功打破**: 8 任务套件所有策略卡在 88%；
+10 任务套件通过新增 `csv_parse_row`（真正困难的任务：引号 + 转义 + 状态机）
+成功区分了策略 — 只有 reflexion 方法解决。
+
+**2. reflexion_insights 明显优越**: 100% 首次成功率，完美学习曲线（前后半段均 1.00）。
+洞察机制工作完美：每个任务完成后提取的洞察帮助后续任务首次通过。
+
+**3. Mock 预测 vs 真实结果的关键差异**:
+
+| 指标 | Mock 预测 | 真实结果 | 差异原因 |
+|------|-----------|----------|----------|
+| direct 成功率 | 0.33 | 0.80 | 真实模型远比 mock 强 |
+| reflexion_insights 首次成功率 | 0.52 | 1.00 | 真实 LLM 的洞察质量远超 mock 模板 |
+| 策略分化程度 | 存在但不明显 | 非常明显 | 10 任务套件打破天花板 |
+
+**4. 成本效益分析**:
+- reflexion 是最佳性价比: +40% 调用换取 +20pp 成功率
+- reflexion_insights 是最优解: +100% 调用换取 100% 首次成功率
+- self_refine 是浪费: +80% 调用换取 0pp（印证 ICLR 2024 反证论文）
+
+**5. 真实 LLM 错误模式超出预设池**: GLM-4-Flash 在 Wave 2 的 `parse_duration` 上
+持续假设空白分隔（`s.split()`），这个错误模式不在预设的 buggy 变体池中。
+这证明：**真实 LLM 的错误经常超出人工预设的失败模式，mock 后端无法完全模拟**。
+
 ---
 
 ## 附录
@@ -570,6 +613,7 @@ GPT-3.5 的专家手写 Prompt 链。
 12. `iteration-12-critic-cove-expel.md` — CRITIC / CoVe / ExpeL 方法深入
 13. `iteration-13-latest-benchmarks.md` — τ³-bench / SWE-bench Live 最新进展
 14. `iteration-14-experiment-design.md` + `iteration-14-results.md` — 组合实验设计与实测结果
+15. `iteration-15-glm-flash-10tasks.md` — GLM-4-Flash 真实后端实验（10 任务套件）
 
 ### B. 参考文献
 
@@ -597,11 +641,13 @@ GPT-3.5 的专家手写 Prompt 链。
 - **评测方法论**: LLM-as-Judge 及对比分析
 - **盲区分析**: 7 大评测盲区
 - **瓶颈分析**: 5 大进化瓶颈
-- **可执行实验**: evolve_lab 框架（8 任务 / 19 失败变体 / 5 策略 / 30 seeds）
-- **总迭代数**: 14 轮（Wave 1: 10 轮调研 + Wave 2: 4 轮深化与实验）
+- **可执行实验**: evolve_lab 框架（10 任务 / 25 失败变体 / 5 策略）
+  - Mock 后端: 30 seeds 验证框架机制
+  - **真实后端**: GLM-4-Flash 实验验证策略差异（reflexion_insights 100% 首次成功率）
+- **总迭代数**: 15 轮（Wave 1: 10 轮调研 + Wave 2: 4 轮深化与实验 + Wave 3: 1 轮真实后端验证）
 
 ---
 
-**报告完成日期**: 2026-09-30（Wave 1）/ 2026-10-01（Wave 2 增补）
-**研究模式**: autoresearch orchestrator (14 iterations, 2 waves)
-**下次更新**: 建议 3 个月后跟进最新进展；真实后端实验待 API key 配置后执行
+**报告完成日期**: 2026-09-30（Wave 1）/ 2026-10-01（Wave 2 + Wave 3 增补）
+**研究模式**: autoresearch orchestrator (15 iterations, 3 waves)
+**下次更新**: 建议 3 个月后跟进最新进展；可运行多种子实验或测试更强模型

@@ -1,0 +1,56 @@
+[seed=1] strategy: direct
+  [direct            ] PASS safe_divide      (first-try, 1 calls, 3.96s)
+  [direct            ] PASS is_palindrome    (first-try, 1 calls, 3.21s)
+  [direct            ] FAIL parse_duration   (1 tries, 1 calls, 6.33s)
+  [direct            ] PASS merge_intervals  (first-try, 1 calls, 6.99s)
+  [direct            ] PASS fib              (first-try, 1 calls, 2.23s)
+  [direct            ] PASS word_freq        (first-try, 1 calls, 4.76s)
+  [direct            ] PASS flatten          (first-try, 1 calls, 4.76s)
+  [direct            ] PASS chunk_list       (first-try, 1 calls, 3.15s)
+[seed=1] strategy: best_of_n
+  [best_of_n         ] PASS safe_divide      (first-try, 1 calls, 1.77s)
+  [best_of_n         ] PASS is_palindrome    (first-try, 1 calls, 3.79s)
+  [best_of_n         ] FAIL parse_duration   (5 tries, 5 calls, 32.02s)
+  [best_of_n         ] PASS merge_intervals  (2 tries, 2 calls, 16.47s)
+  [best_of_n         ] PASS fib              (first-try, 1 calls, 3.38s)
+  [best_of_n         ] PASS word_freq        (first-try, 1 calls, 4.53s)
+  [best_of_n         ] PASS flatten          (first-try, 1 calls, 4.21s)
+  [best_of_n         ] PASS chunk_list       (first-try, 1 calls, 2.49s)
+[seed=1] strategy: self_refine
+  [self_refine       ] PASS safe_divide      (first-try, 1 calls, 2.07s)
+  [self_refine       ] PASS is_palindrome    (first-try, 1 calls, 2.48s)
+  [self_refine       ] FAIL parse_duration   (5 tries, 9 calls, 116.35s)
+  [self_refine       ] PASS merge_intervals  (first-try, 1 calls, 10.47s)
+  [self_refine       ] PASS fib              (first-try, 1 calls, 5.56s)
+  [self_refine       ] PASS word_freq        (first-try, 1 calls, 6.62s)
+  [self_refine       ] PASS flatten          (first-try, 1 calls, 3.83s)
+  [self_refine       ] PASS chunk_list       (first-try, 1 calls, 2.19s)
+[seed=1] strategy: reflexion
+  [reflexion         ] PASS safe_divide      (first-try, 1 calls, 2.63s)
+  [reflexion         ] PASS is_palindrome    (first-try, 1 calls, 2.51s)
+  [reflexion         ] FAIL parse_duration   (5 tries, 11 calls, 65.32s)
+  [reflexion         ] PASS merge_intervals  (first-try, 1 calls, 4.84s)
+  [reflexion         ] PASS fib              (first-try, 1 calls, 9.28s)
+  [reflexion         ] PASS word_freq        (first-try, 1 calls, 7.53s)
+  [reflexion         ] PASS flatten          (first-try, 1 calls, 4.74s)
+  [reflexion         ] PASS chunk_list       (first-try, 1 calls, 5.29s)
+[seed=1] strategy: reflexion_insights
+  [reflexion_insights] PASS safe_divide      (first-try, 2 calls, 6.52s)
+  [reflexion_insights] PASS is_palindrome    (first-try, 2 calls, 9.37s)
+  [reflexion_insights] FAIL parse_duration   (5 tries, 11 calls, 64.72s)
+  [reflexion_insights] PASS merge_intervals  (first-try, 2 calls, 8.50s)
+  [reflexion_insights] PASS fib              (first-try, 2 calls, 9.82s)
+  [reflexion_insights] PASS word_freq        (first-try, 2 calls, 25.35s)
+  [reflexion_insights] PASS flatten          (first-try, 2 calls, 11.39s)
+  [reflexion_insights] PASS chunk_list       (first-try, 2 calls, 5.56s)
+
+=== Aggregate (mean over seeds) ===
+strategy              success  first-try  attempts   calls  1st-half  2nd-half
+------------------------------------------------------------------------------
+direct                   0.88       0.88      1.00     8.0      0.75      1.00
+best_of_n                0.88       0.75      1.62    13.0      0.50      1.00
+self_refine              0.88       0.88      1.50    16.0      0.75      1.00
+reflexion                0.88       0.88      1.50    18.0      0.75      1.00
+reflexion_insights       0.88       0.88      1.50    25.0      0.75      1.00
+
+saved: experiments\results\experiment-openai-261001-041934.json
