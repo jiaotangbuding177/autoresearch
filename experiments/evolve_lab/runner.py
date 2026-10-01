@@ -19,6 +19,7 @@ DEFAULT_STRATEGIES = (
     "best_of_n",
     "self_refine",
     "reflexion",
+    "reflexion_plus",
     "reflexion_insights",
 )
 

@@ -1,0 +1,42 @@
+[seed=1] strategy: direct
+  [direct            ] PASS safe_divide      (first-try, 1 calls, 2.71s)
+  [direct            ] PASS is_palindrome    (first-try, 1 calls, 3.98s)
+  [direct            ] PASS parse_duration   (first-try, 1 calls, 8.48s)
+  [direct            ] PASS merge_intervals  (first-try, 1 calls, 8.53s)
+  [direct            ] PASS fib              (first-try, 1 calls, 3.44s)
+  [direct            ] PASS word_freq        (first-try, 1 calls, 6.08s)
+  [direct            ] PASS flatten          (first-try, 1 calls, 3.11s)
+  [direct            ] PASS chunk_list       (first-try, 1 calls, 2.79s)
+  [direct            ] PASS class_lru_cache  (first-try, 1 calls, 9.43s)
+  [direct            ] FAIL csv_parse_row    (1 tries, 1 calls, 9.13s)
+[seed=1] strategy: reflexion
+  [reflexion         ] PASS safe_divide      (first-try, 1 calls, 2.50s)
+  [reflexion         ] PASS is_palindrome    (first-try, 1 calls, 4.16s)
+  [reflexion         ] PASS parse_duration   (first-try, 1 calls, 7.54s)
+  [reflexion         ] PASS merge_intervals  (first-try, 1 calls, 10.11s)
+  [reflexion         ] PASS fib              (first-try, 1 calls, 4.14s)
+  [reflexion         ] PASS word_freq        (first-try, 1 calls, 5.45s)
+  [reflexion         ] PASS flatten          (first-try, 1 calls, 3.85s)
+  [reflexion         ] PASS chunk_list       (first-try, 1 calls, 2.77s)
+  [reflexion         ] PASS class_lru_cache  (first-try, 1 calls, 12.80s)
+  [reflexion         ] PASS csv_parse_row    (2 tries, 3 calls, 33.43s)
+[seed=1] strategy: reflexion_plus
+  [reflexion_plus    ] PASS safe_divide      (first-try, 1 calls, 2.25s)
+  [reflexion_plus    ] PASS is_palindrome    (first-try, 1 calls, 2.82s)
+  [reflexion_plus    ] PASS parse_duration   (2 tries, 3 calls, 15.10s)
+  [reflexion_plus    ] PASS merge_intervals  (first-try, 1 calls, 8.72s)
+  [reflexion_plus    ] PASS fib              (first-try, 1 calls, 3.06s)
+  [reflexion_plus    ] PASS word_freq        (2 tries, 3 calls, 18.99s)
+  [reflexion_plus    ] PASS flatten          (first-try, 1 calls, 3.96s)
+  [reflexion_plus    ] PASS chunk_list       (first-try, 1 calls, 3.45s)
+  [reflexion_plus    ] PASS class_lru_cache  (first-try, 1 calls, 9.85s)
+  [reflexion_plus    ] PASS csv_parse_row    (4 tries, 7 calls, 44.32s)
+
+=== Aggregate (mean over seeds) ===
+strategy              success  first-try  attempts   calls  1st-half  2nd-half
+------------------------------------------------------------------------------
+direct                   0.90       0.90      1.00    10.0      1.00      0.80
+reflexion                1.00       0.90      1.10    12.0      1.00      0.80
+reflexion_plus           1.00       0.70      1.50    20.0      0.80      0.60
+
+saved: experiments\results\reflexion-plus-test.json\experiment-openai-261001-084616.json

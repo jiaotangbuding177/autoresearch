@@ -187,6 +187,66 @@ class Reflexion(Strategy):
         return TaskOutcome(task.id, False, first_passed, self.max_attempts, calls)
 
 
+class ReflexionPlus(Strategy):
+    """Enhanced Reflexion: provides detailed failure information including 
+    expected vs actual values from test output."""
+
+    name = "reflexion_plus"
+
+    def solve(self, task: Task, insights: list[str]) -> TaskOutcome:
+        calls = 0
+        reflections: list[str] = []
+        first_passed = False
+        last_code = ""
+        last_output = ""
+        for attempt in range(self.max_attempts):
+            context = GenerationContext(
+                attempt=attempt, reflections=reflections, insights=insights
+            )
+            code = self.backend.generate(task, context)
+            calls += 1
+            passed, output = self._verify(task, code)
+            if attempt == 0:
+                first_passed = passed
+            if passed:
+                return TaskOutcome(task.id, True, first_passed, attempt + 1, calls)
+            
+            # Enhanced reflection: extract detailed failure information
+            enhanced_reflection = self._enhanced_reflect(task, code, output)
+            calls += 1
+            reflections.append(enhanced_reflection)
+            last_code, last_output = code, output
+        
+        # budget exhausted: record a final reflection for the trajectory log
+        _ = self._enhanced_reflect(task, last_code, last_output)
+        calls += 1
+        return TaskOutcome(task.id, False, first_passed, self.max_attempts, calls)
+    
+    def _enhanced_reflect(self, task: Task, code: str, output: str) -> str:
+        """Extract detailed failure information from test output."""
+        # Use the backend's reflect method as base
+        base_reflection = self.backend.reflect(task, code, output)
+        
+        # Extract specific failure patterns from output
+        enhanced = f"BASE REFLECTION: {base_reflection}\n\n"
+        enhanced += "DETAILED FAILURE ANALYSIS:\n"
+        
+        # Look for assertion errors with expected/actual values
+        lines = output.split('\n')
+        for i, line in enumerate(lines):
+            if 'AssertionError' in line or 'FAIL:' in line:
+                enhanced += f"  {line.strip()}\n"
+                # Include the next few lines for context
+                for j in range(i+1, min(i+4, len(lines))):
+                    if lines[j].strip():
+                        enhanced += f"  {lines[j].strip()}\n"
+        
+        enhanced += "\nFIX STRATEGY: Based on the specific failure above, "
+        enhanced += "identify the exact condition that failed and adjust your code accordingly."
+        
+        return enhanced
+
+
 class ReflexionPlusInsights(Reflexion):
     """Reflexion + ExpeL-style cross-task insight extraction and reuse."""
 
@@ -228,5 +288,6 @@ STRATEGY_REGISTRY: dict[str, type[Strategy]] = {
     BestOfN.name: BestOfN,
     SelfRefine.name: SelfRefine,
     Reflexion.name: Reflexion,
+    ReflexionPlus.name: ReflexionPlus,
     ReflexionPlusInsights.name: ReflexionPlusInsights,
 }

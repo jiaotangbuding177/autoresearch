@@ -1,0 +1,2171 @@
+{
+  "generated_at": "2026-10-01T06:09:41.089521+00:00",
+  "backend": "openai",
+  "backend_kwargs": {
+    "model": "glm-4-flash"
+  },
+  "max_attempts": 5,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "tasks": [
+    "safe_divide",
+    "is_palindrome",
+    "parse_duration",
+    "merge_intervals",
+    "fib",
+    "word_freq",
+    "flatten",
+    "chunk_list",
+    "class_lru_cache",
+    "csv_parse_row"
+  ],
+  "runs": [
+    {
+      "seed": 1,
+      "strategy": "direct",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 10,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 1,
+      "strategy": "best_of_n",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 5
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 14,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 1,
+      "strategy": "self_refine",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 9
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 18,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 1,
+      "strategy": "reflexion",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 3,
+          "llm_calls": 5
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.2,
+        "total_llm_calls": 14,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 1,
+      "strategy": "reflexion_insights",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 4,
+          "llm_calls": 8
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.3,
+        "total_llm_calls": 26,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 2,
+      "strategy": "direct",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 10,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 2,
+      "strategy": "best_of_n",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 5
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 14,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 2,
+      "strategy": "self_refine",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 9
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 9
+        }
+      ],
+      "summary": {
+        "success_rate": 0.8,
+        "first_attempt_rate": 0.8,
+        "avg_attempts": 1.8,
+        "total_llm_calls": 26,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.6
+      }
+    },
+    {
+      "seed": 2,
+      "strategy": "reflexion",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 11
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 20,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 2,
+      "strategy": "reflexion_insights",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 11
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 29,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 3,
+      "strategy": "direct",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 10,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 3,
+      "strategy": "best_of_n",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 5
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 14,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 3,
+      "strategy": "self_refine",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 9
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 9
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.8,
+        "avg_attempts": 1.8,
+        "total_llm_calls": 26,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.6
+      }
+    },
+    {
+      "seed": 3,
+      "strategy": "reflexion",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 11
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 20,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 3,
+      "strategy": "reflexion_insights",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 1.0,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 20,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 1.0
+      }
+    },
+    {
+      "seed": 4,
+      "strategy": "direct",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 10,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 4,
+      "strategy": "best_of_n",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 5
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.7,
+        "avg_attempts": 1.6,
+        "total_llm_calls": 16,
+        "first_half_first_attempt_rate": 0.6,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 4,
+      "strategy": "self_refine",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 9
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 18,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 4,
+      "strategy": "reflexion",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 1.0,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 10,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 1.0
+      }
+    },
+    {
+      "seed": 4,
+      "strategy": "reflexion_insights",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 4
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 11
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.8,
+        "avg_attempts": 1.5,
+        "total_llm_calls": 31,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.6
+      }
+    },
+    {
+      "seed": 5,
+      "strategy": "direct",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 0.8,
+        "first_attempt_rate": 0.8,
+        "avg_attempts": 1.0,
+        "total_llm_calls": 10,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.6
+      }
+    },
+    {
+      "seed": 5,
+      "strategy": "best_of_n",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 5
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 14,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 5,
+      "strategy": "self_refine",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 9
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 18,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 5,
+      "strategy": "reflexion",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 2,
+          "llm_calls": 3
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 1
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": true,
+          "first_attempt_success": false,
+          "attempts_used": 3,
+          "llm_calls": 5
+        }
+      ],
+      "summary": {
+        "success_rate": 1.0,
+        "first_attempt_rate": 0.8,
+        "avg_attempts": 1.3,
+        "total_llm_calls": 16,
+        "first_half_first_attempt_rate": 0.8,
+        "second_half_first_attempt_rate": 0.8
+      }
+    },
+    {
+      "seed": 5,
+      "strategy": "reflexion_insights",
+      "outcomes": [
+        {
+          "task_id": "safe_divide",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "is_palindrome",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "parse_duration",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "merge_intervals",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "fib",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "word_freq",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "flatten",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "chunk_list",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "class_lru_cache",
+          "success": true,
+          "first_attempt_success": true,
+          "attempts_used": 1,
+          "llm_calls": 2
+        },
+        {
+          "task_id": "csv_parse_row",
+          "success": false,
+          "first_attempt_success": false,
+          "attempts_used": 5,
+          "llm_calls": 11
+        }
+      ],
+      "summary": {
+        "success_rate": 0.9,
+        "first_attempt_rate": 0.9,
+        "avg_attempts": 1.4,
+        "total_llm_calls": 29,
+        "first_half_first_attempt_rate": 1.0,
+        "second_half_first_attempt_rate": 0.8
+      }
+    }
+  ],
+  "aggregate": {
+    "direct": {
+      "success_rate": 0.88,
+      "first_attempt_rate": 0.88,
+      "avg_attempts": 1.0,
+      "total_llm_calls": 10.0,
+      "first_half_first_attempt_rate": 1.0,
+      "second_half_first_attempt_rate": 0.76
+    },
+    "best_of_n": {
+      "success_rate": 0.92,
+      "first_attempt_rate": 0.86,
+      "avg_attempts": 1.44,
+      "total_llm_calls": 14.4,
+      "first_half_first_attempt_rate": 0.92,
+      "second_half_first_attempt_rate": 0.8
+    },
+    "self_refine": {
+      "success_rate": 0.88,
+      "first_attempt_rate": 0.86,
+      "avg_attempts": 1.56,
+      "total_llm_calls": 21.2,
+      "first_half_first_attempt_rate": 1.0,
+      "second_half_first_attempt_rate": 0.72
+    },
+    "reflexion": {
+      "success_rate": 0.96,
+      "first_attempt_rate": 0.9,
+      "avg_attempts": 1.26,
+      "total_llm_calls": 16.0,
+      "first_half_first_attempt_rate": 0.96,
+      "second_half_first_attempt_rate": 0.84
+    },
+    "reflexion_insights": {
+      "success_rate": 0.94,
+      "first_attempt_rate": 0.9,
+      "avg_attempts": 1.32,
+      "total_llm_calls": 27.0,
+      "first_half_first_attempt_rate": 1.0,
+      "second_half_first_attempt_rate": 0.8
+    }
+  }
+}
