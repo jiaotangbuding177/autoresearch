@@ -1,0 +1,41 @@
+{
+  "experiment": "arc_benchmark",
+  "backend": "openai",
+  "model": "glm-4-flash",
+  "timestamp": "2026-10-02T12:17:35.942993",
+  "max_samples": 20,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "results": [
+    {
+      "seed": 1,
+      "baseline_accuracy": 0.9,
+      "reflexion_accuracy": 1.0,
+      "improvement": 0.09999999999999998,
+      "avg_attempts": 1.1
+    },
+    {
+      "seed": 2,
+      "baseline_accuracy": 0.9,
+      "reflexion_accuracy": 1.0,
+      "improvement": 0.09999999999999998,
+      "avg_attempts": 1.05
+    },
+    {
+      "seed": 3,
+      "baseline_accuracy": 0.95,
+      "reflexion_accuracy": 1.0,
+      "improvement": 0.050000000000000044,
+      "avg_attempts": 1.05
+    }
+  ],
+  "overall": {
+    "avg_baseline_accuracy": 0.9166666666666666,
+    "avg_reflexion_accuracy": 1.0,
+    "avg_improvement": 0.08333333333333333,
+    "avg_attempts": 1.0666666666666667
+  }
+}

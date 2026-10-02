@@ -1,0 +1,41 @@
+{
+  "experiment": "gsm8k_benchmark",
+  "backend": "openai",
+  "model": "glm-4-flash",
+  "timestamp": "2026-10-01T23:48:58.850273",
+  "max_samples": 100,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "results": [
+    {
+      "seed": 1,
+      "baseline_accuracy": 0.67,
+      "reflexion_accuracy": 0.75,
+      "improvement": 0.07999999999999996,
+      "avg_attempts": 1.67
+    },
+    {
+      "seed": 2,
+      "baseline_accuracy": 0.63,
+      "reflexion_accuracy": 0.73,
+      "improvement": 0.09999999999999998,
+      "avg_attempts": 1.67
+    },
+    {
+      "seed": 3,
+      "baseline_accuracy": 0.66,
+      "reflexion_accuracy": 0.75,
+      "improvement": 0.08999999999999997,
+      "avg_attempts": 1.58
+    }
+  ],
+  "overall": {
+    "avg_baseline_accuracy": 0.6533333333333333,
+    "avg_reflexion_accuracy": 0.7433333333333333,
+    "avg_improvement": 0.08999999999999997,
+    "avg_attempts": 1.64
+  }
+}
